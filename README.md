@@ -1,1 +1,2 @@
-# Unsupervied_learning_challenge
+# Crytocurrencies
+Unsupervised ML model for clustering cryptocurrencies
