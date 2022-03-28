@@ -1,6 +1,5 @@
 # Cryptocurrency Clusters
-The aim of this project is to determine cryptocurrencies grouping based upon unsupervised machine learning. The project will compare clustering algorithms, such as Kmeans, Hierachical Clustering. There will also be data visualizations to share my findings.
-
+The aim of this project is to determine cryptocurrencies grouping based upon unsupervised machine learning. The project will compare clustering algorithms, such as Kmeans, Hierachical Clustering. 
 ## Objectives
 The goals for this project is to:
 
@@ -15,8 +14,7 @@ The goals for this project is to:
 * Jupyter Notebook
 * Pandas
 * Sklearn (StandardScaler, PCA, AgglomerativeClustering, KMeans)
-* Hvplot
-* Plotly
+
 
 ## Processes
 
