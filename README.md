@@ -1,53 +1,47 @@
 # Cryptocurrency Clusters
+The aim of this project is to determine cryptocurrencies grouping based upon unsupervised machine learning. The project will compare clustering algorithms, such as Kmeans, Hierachical Clustering. There will also be data visualizations to share my findings.
 
-## Background
+## Objectives
+The goals for this project is to:
 
-* You are on the Advisory Services Team of a financial consultancy. One of your clients, a prominent investment bank, is interested in offering a new cryptocurrency investment portfolio for its customers. The company, however, is lost in the vast universe of cryptocurrencies. They’ve asked you to create a report that includes what cryptocurrencies are on the trading market and determine whether they can be grouped to create a classification system for this new investment.
+* Prepare the data for dimensions reduction with PCA and clustering using K-means.
+* Reduce data dimensions using PCA algorithms from sklearn.
+* Predict clusters using cryptocurrencies data using the K-means algorithm form sklearn.
+* Create some plots and data tables to present the results.
 
-* You have been handed raw data, so you will first need to process it to fit the machine learning models. Since there is no known classification system, you will need to use unsupervised learning. You will use several clustering algorithms to explore whether the cryptocurrencies can be grouped together with other similar cryptocurrencies. You will use data visualization to share your findings with the investment bank.
 
-## Instructions
+## Technologies Used
+* Python
+* Jupyter Notebook
+* Pandas
+* Sklearn (StandardScaler, PCA, AgglomerativeClustering, KMeans)
+* Hvplot
+* Plotly
 
-### Data Preparation
+## Processes
 
-* Read `crypto_data.csv` into Pandas. The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
+### Data Preprocessing
+* Remove all cryptocurrencies that aren’t trading.
+* Remove all cryptocurrencies that don’t have an algorithm defined.
+* Remove the IsTrading column.
+* Remove all cryptocurrencies with at least one null value.
+* Remove all cryptocurrencies without coins mined.
+* Store the names of all cryptocurrencies on a DataFramed named coins_name, and use the crypto_df.index as the index for this new DataFrame.
+* Remove the CoinName column.
+* Create dummies variables for all of the text features, and store the resulting data on a DataFrame named X.
+* Use the StandardScaler from sklearn (Links to an external site.) to standardize all of the data from the X DataFrame. This is important prior to * using PCA and K-means algorithms.
 
-* Discard all cryptocurrencies that are not being traded. In other words, filter for currencies that are currently being traded. Once you have done this, drop the `IsTrading` column from the dataframe.
+### Reducing Data Dimensions Using PCA
+* Use the PCA algorithm from sklearn (Links to an external site.) to reduce the dimensions of the X DataFrame down to three principal components.
+* After reducing the data dimensions, create a DataFrame named “pcs_df” that includes the following columns: PC 1, PC 2, and PC 3. Use the crypto_df.index as the index for this new DataFrame.
 
-* Remove all rows that have at least one null value.
+### Clustering Cryptocurrencies Using K-means
+* Create an elbow curve to find the best value for K, and use the pcs_df DataFrame.
+* Run the K-means algorithm to predict the K clusters for the cryptocurrencies’ data. Use the pcs_df to run the K-means algorithm.
+* Create a new DataFrame named “clustered_df,” that includes the following columns: Algorithm, ProofType, TotalCoinsMined, TotalCoinSupply, PC 1, PC 2, PC 3, CoinName, and Class. Remember to maintain the index of the crypto_df DataFrames as is shown below
+#### Summary
+I discarded from the dataframe all cryptocurrencies that are not being traded, dropped rows that contain null values, filter the dataframe for cryptocurrencies that have been mined, dummy variables are created for the Algorithm and ProofType columns and the data is standardized with StandardScaler.
 
-* Filter for cryptocurrencies that have been mined. That is, the total coins mined should be greater than zero.
+When it comes to dimensionality reduction, I created a PCA model, model's explained variance is set to 90% (0.9), the shape of the reduced dataset is examined, t-SNE model is created and used to reduce dimensions and t-SNE is used to create a plot of the reduced features.
 
-* In order for your dataset to be comprehensible to a machine learning algorithm, its data should be numeric. Since the coin names do not contribute to the analysis of the data, delete the `CoinName` from the original dataframe.
-
-* Your next step in data preparation is to convert the remaining features with text values, `Algorithm` and `ProofType`, into numerical data. To accomplish this task, use Pandas to create dummy variables. Examine the number of rows and columns of your dataset now. How did they change?
-
-* Standardize your dataset so that columns that contain larger values do not unduly influence the outcome.
-
-### Dimensionality Reduction
-
-* Creating dummy variables above dramatically increased the number of features in your dataset. Perform dimensionality reduction with PCA. Rather than specify the number of principal components when you instantiate the PCA model, it is possible to state the desired **explained variance**. For example, say that a dataset has 100 features. Using `PCA(n_components=0.99)` creates a model that will preserve approximately 99% of the explained variance, whether that means reducing the dataset to 80 principal components or 3. For this project, preserve 90% of the explained variance in dimensionality reduction. How did the number of the features change?
-
-* Next, further reduce the dataset dimensions with t-SNE and visually inspect the results. In order to accomplish this task, run t-SNE on the principal components: the output of the PCA transformation. Then create a scatter plot of the t-SNE output. Observe whether there are distinct clusters or not.
-
-### Cluster Analysis with k-Means
-
-* Create an elbow plot to identify the best number of clusters. Use a for-loop to determine the inertia for each `k` between 1 through 10. Determine, if possible, where the elbow of the plot is, and at which value of `k` it appears.
-
-### Recommendation
-
-* Based on your findings, make a brief (1-2 sentences) recommendation to your clients. Can the cryptocurrencies be clustered together? If so, into how many clusters? 
-
-## Rubric
-
-[Unit 20 - Unsupervised Machine Learning Homework Rubric - Cryptocurrency Clusters](https://docs.google.com/document/d/1zhiC8-PtfMknDxYHagsTukryQAJSdXFRWa-aK3W28Vg/edit?usp=sharing)
-
-- - -
-
-## References
-
-Crypto Coin Comparison Ltd. (2020) Coin market capitalization lists of crypto currencies and prices. Retrieved from [https://www.cryptocompare.com/coins/list/all/USD/1](https://www.cryptocompare.com/coins/list/all/USD/1)
-
-- - -
-
-© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+And finally for the cluster analysis and conclusion, k-means model was used, a for loop is used to create a list of inertias for each K from 1 to 10, inclusive, a plot is created to examine any elbows and your conclusion is appropriate based on your own findings. 
