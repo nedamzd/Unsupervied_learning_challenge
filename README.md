@@ -37,7 +37,7 @@ The goals for this project is to:
 * Create an elbow curve to find the best value for K, and use the pcs_df DataFrame.
 * Run the K-means algorithm to predict the K clusters for the cryptocurrencies’ data. Use the pcs_df to run the K-means algorithm.
 * Create a new DataFrame named “clustered_df,” that includes the following columns: Algorithm, ProofType, TotalCoinsMined, TotalCoinSupply, PC 1, PC 2, PC 3, CoinName, and Class. Remember to maintain the index of the crypto_df DataFrames as is shown below
-#### Summary
+### Summary
 I discarded from the dataframe all cryptocurrencies that are not being traded, dropped rows that contain null values, filter the dataframe for cryptocurrencies that have been mined, dummy variables are created for the Algorithm and ProofType columns and the data is standardized with StandardScaler.
 
 When it comes to dimensionality reduction, I created a PCA model, model's explained variance is set to 90% (0.9), the shape of the reduced dataset is examined, t-SNE model is created and used to reduce dimensions and t-SNE is used to create a plot of the reduced features.
